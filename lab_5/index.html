@@ -10,8 +10,10 @@
   <div class="container">
     <div class="wrapper">
       <div class="header">Test JSON page</div>
+      <p id ="questions"></p>
       <!-- <button class="button" onclick="loadData()">Load Some JSON</button> -->
-      <button class="button" onclick="console.log('You haven\'t written a function yet!');">Click me to replace list entries</button>
+      <!--<button class="button" onclick="console.log('You haven\'t written a function yet!');">Click me to replace list entries</button> -->
+      <button class="button" onclick="replace_countries()">Click me to replace list entries</button>
       <div class="content">
         <ul class="instructions">
           <li>Delete and re-clone the class repository</li>
@@ -279,7 +281,33 @@
       { "name": "Zimbabwe", "code": "ZW" }
     ]
     console.log("List of countries in the world", countries);
-    console.log(countries.length);
+    /*console.log(Object.keys(countries));*/
+    sessionStorage.setItem("json_countries", JSON.stringify(countries)); /* Question 1*/
+    /* start of the Q2-9 */
+    /*document.getElementsByClassName("button").onclick = ;*/
+    document.getElementsByClassName("content").innerHTML = "Hello";
+
+    function replace_countries(){
+      const count_arr = sessionStorage.getItem("json_countries");
+      let list_1 = JSON.parse(count_arr);
+      /*console.log("AAHAHAHAHAHA");*/
+
+      var i;
+      var items = document.getElementsByClassName("instructions");
+      var new_list = document.createElement('ol'); /* making a new ordered list*/
+
+      /* this loop limits the list to 50 items */
+      for (i = 0; i < 50; i += 1){
+            var item = document.createElement('li'); /* list contents */
+            /* retrieving random country name */
+            var temp2 = list_1[Math.floor((Math.random() * 243))].name; 
+            item.innerHTML = temp2;
+            new_list.appendChild(item);
+      }
+      /* this replaces the original list */
+      items[0].innerHTML = "";
+      items[0].appendChild(new_list);
+    }
   </script>
 </body>
 
