@@ -292,17 +292,27 @@
       let list_1 = JSON.parse(count_arr);
       /*console.log("AAHAHAHAHAHA");*/
 
-      var i;
-      var items = document.getElementsByClassName("instructions");
-      var new_list = document.createElement('ol'); /* making a new ordered list*/
+      let i = 0;
+      let items = document.getElementsByClassName("instructions");
+      let new_list = document.createElement('ol'); /* making a new ordered list*/
 
       /* this loop limits the list to 50 items */
-      for (i = 0; i < 50; i += 1){
-            var item = document.createElement('li'); /* list contents */
+
+      while (i < 50){
+            let item = document.createElement('li'); /* list contents */
+            let arr = []; /* empty array to store random index values */
+
+            let z = Math.floor((Math.random() * 243)); /* getting random index */
+
             /* retrieving random country name */
-            var temp2 = list_1[Math.floor((Math.random() * 243))].name; 
-            item.innerHTML = temp2;
-            new_list.appendChild(item);
+            if (arr.includes(z) === false) {
+                  let temp2 = list_1[z].name; 
+                  item.innerHTML = temp2;
+                  new_list.appendChild(item); /* adding country name to ol */
+                  arr[i] = z
+                  i += 1; 
+            }
+           
       }
       /* this replaces the original list */
       items[0].innerHTML = "";
