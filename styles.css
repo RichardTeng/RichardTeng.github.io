@@ -1,0 +1,64 @@
+body {
+	text-align: center;
+	background-image: url(texture_paper.jpg);
+	background-size: 100px 80px;
+}
+#resume_top {
+	text-align: center;
+}
+#name {
+	font-size: 30px;
+	background-color: blue;
+}	
+#phone_number {
+	font-size: 18px;
+}
+#email {
+	font-size: 18px;
+	color: blue;
+}
+.section_container{
+	text-align: center;
+ 	display: inline-flex;
+  	width: 60%;
+  	flex-flow: row wrap;
+  	justify-content: space-around;
+}
+.section_info{
+	border-style: solid;
+  	/*display: inline-block;*/
+  	background-color: ivory;
+
+  	flex: 1;
+  	padding: 16px;
+}
+.section_header{
+	text-align: center;
+	text-decoration: underline;	
+}
+/*#outlook {
+	background-color: ivory;
+	display: inline-block;
+}*/
+.outlook_text {
+  	text-align: center;
+	font-size: 14px;	
+}
+/*#experience_info {
+	background-color: ivory;
+	display: inline-block;
+}*/
+/* this section consist of 3 classes which make the body of the job entries */
+.job_company{
+	text-align: left;
+	padding-left: .1cm; 
+}
+.job_position{
+	text-align: left;
+	padding-left: .1cm; 
+	font-style: italic;
+}
+.position_text {
+	text-align: justify;
+	font-size: 14px;	
+}
