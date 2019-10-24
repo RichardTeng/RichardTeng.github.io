@@ -22,6 +22,7 @@
     const arr = document.querySelector('.content');
     arr.innerHTML = "";
     let temp = [];
+    let new_list = document.createElement('ol')
     /* getting 15 random countries */
     for (i = 0; i < 15; i += 0){
       let item = document.createElement('li');
@@ -30,11 +31,12 @@
         item.innerText = arg[z];
         temp[i] = z; 
         console.log(item);
-        arr.appendChild(item);
+        new_list.appendChild(item);
         i += 1;
       }
     }
     /*console.log(arr);*/
+    arr.appendChild(new_list);
     return arr;
   }  
     function loadData() {
