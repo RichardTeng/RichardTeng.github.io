@@ -16,15 +16,57 @@
     </div>
   </div>
   <script>
-    function loadData() {
-      fetch('ajax_sample.json')
-        .then(res => res.json())
-        .then(res => {
-          // you can now work in this area
 
-          return res;
-        })
-        .then(data => document.querySelector(".content").innerText = data);
+    // function that lists all the routes
+    function listData(arg){
+      let i;
+      const arr = document.querySelector('.content');
+      arr.innerHTML = "";
+      let new_list = document.createElement('ul');
+
+      for (i = 0; i < arg.length - 1; i += 1){
+        let item = document.createElement('li');
+        item.innerText = arg[i];
+        console.log(item);
+        new_list.appendChild(item);
+      }
+    arr.appendChild(new_list);
+    // this returns the parameter so I can use it again to find the route
+    // I want after listing.
+    return arg;
+    }
+    // loops through the array and finds the route I selected.
+    function isRoute(arg) {
+      let i;
+      let temp;
+      const change = document.querySelector('.header');
+      change.innerHTML = "";
+      for (i = 0; i < arg.length; i += 1){
+        if (arg[i] === "128 The Enclave"){
+          console.log("FOUND");
+          temp = arg[i];
+        }
+      }
+      change.innerHTML = "UMD Bus Route " + temp;
+      //return temp;
+    }
+    function route(arg) {
+      return arg === "128 The Enclave";
+    }
+    function loadData() {
+      fetch('https://api.umd.io/v0/bus/routes')
+      // array of bus route data
+        .then(res => res.json())
+        .then(res => res.map(c => c.title))
+        .then(res => listData(res))
+        .then(data => isRoute(data)); 
+      //   .then(res => { 
+      //      const change = document.querySelector('.header');
+      //      change.innerHTML = ""; 
+          
+      //      return res;
+      //  })
+      //   ;
     }
   </script>
 </body>
