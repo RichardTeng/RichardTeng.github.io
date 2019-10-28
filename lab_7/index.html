@@ -42,7 +42,8 @@
       const change = document.querySelector('.header');
       change.innerHTML = "";
       for (i = 0; i < arg.length; i += 1){
-        if (arg[i] === "128 The Enclave"){
+        // index of the route I want
+        if (i === 16){
           console.log("FOUND");
           temp = arg[i];
         }
