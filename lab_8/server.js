@@ -41,14 +41,30 @@ app.use(express.static('public'));
 // the simplest format is not necessarily the best one.
 // this is, right now, an introduction to Callback Hell
 // but it is okay for a first-level example
+
+function inst_list(arg) {
+  let size = arg.length;
+  let i;
+  let index = 0;
+  let arr = [];
+  for (i = 0; i < size; i ++){
+    if (arg[i].department === "Information Studies"){
+      arr[index] = arg[i].course_id;
+      index ++;
+    }
+  }
+  return arr;
+}
 app.get('/api', (req, res) => {
-  const baseURL = 'https://api.umd.io/v0/bus/routes';
+  const baseURL = 'https://api.umd.io/v0/courses/list';
   fetch(baseURL)
     .then((r) => r.json())
     .then((data) => {
-      console.log(data);
-      res.send({ data: data });
+      const result = data.filter(item => item.dept_id === "INST");
+      console.log(result);
+      res.send({ result: result });
     })
+    //.then(r => inst_list(r))
     .catch((err) => {
       console.log(err);
       res.redirect('/error');

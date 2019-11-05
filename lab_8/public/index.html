@@ -16,6 +16,19 @@
     </div>
   </div>
   <script>
+    function list_inst(arg){
+      const change = document.querySelector(".content");
+      change.innerHTML = "";
+      let i;
+      let new_list = document.createElement("ol");
+      for (i = 0; i < arg.length; i += 1){
+        let item = document.createElement('li');
+        item.innerText = arg[i];
+        new_list.appendChild(item);
+      }
+      change.appendChild(new_list);
+      //return change;
+    }
     function loadData() {
       console.log('fetch'); // confirm code is running on click
       fetch('/api')
@@ -24,8 +37,9 @@
           console.log(res); // logging step to check what we got
           return res;
         })
-        .then(res => res.data.map(c => c.route_id))
-        .then(codes => document.querySelector(".content").innerText = codes);
+        .then(res => res.result.map(c => c.course_id + ":" + " "+ c.name))
+        //.then(codes => document.querySelector(".content").innerText = codes);
+        .then(res => list_inst(res));
     }
   </script>
 </body>
