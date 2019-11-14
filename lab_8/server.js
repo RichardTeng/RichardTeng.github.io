@@ -61,6 +61,7 @@ app.get('/api', (req, res) => {
     .then((r) => r.json())
     .then((data) => {
       const result = data.filter(item => item.dept_id === "INST");
+      
       console.log(result);
       res.send({ result: result });
     })
